@@ -3,14 +3,14 @@ NSGA-II as Python Library for Calibration of Models
 ###################################################
 pynsga2 1.0
 
-Released: 11-January-2016
+Released: 11-January-2017
 
 
 ************
 Introduction
 ************
 *  **Non-Dominated Sorting Genetic Algorithm II (NSGA-II)** is a multi-objective optimization algorithm used as an automatic calibration tool in wide range of disciplines.
-*  pynsga2 is adapted from `nsga2 for SWAT models <https://github.com/mehmetbercan/NSGA II_Python_for_SWAT_model>`_. Thus, pynsga2 is tested on a `Hydrologic Model <http://www.sciencedirect.com/science/article/pii/S1364815216302547>`_.
+*  pynsga2 is adapted from `nsga2 for SWAT models <https://github.com/mehmetbercan/NSGA-II_Python_for_SWAT_model>`_. Thus, pynsga2 is tested on a `Hydrologic Model <http://www.sciencedirect.com/science/article/pii/S1364815216302547>`_.
 *  pynsga2 can be used with any model in any dicipline.
 
 ************
@@ -20,28 +20,27 @@ Setup
 **Install the Python module:**
 
 *  Python setuptools are required for installation
-*  Open a command prompt and "cd" to "./pynsga2", then type "Python setup.py install"
-*  If the bullet above does not work, try "pip install <./pynsga2>"
+*  Open a command prompt and ``cd`` to *"./pynsga2"*, then type ``Python setup.py install``
+*  If the bullet above does not work, try ``pip install <./pynsga2>``
  
 **Setup the Model:** 
 
-*  Use "ExampleModel" folder structure 
-*  Setup Model directory in "pynsga2Example.py" in the "ExampleModel" folder
-*  Setup NSGA-II parameters in "pynsga2.def" file in "NSGA2.IN" folder
-*  Setup calibration parameters for your model in "pynsga2_par.def" file in "NSGA2.IN" folder
-*  Edit "pynsga2userutilities.py" under "C:\*YourPythonDirectory*\Lib\site-packages\pynsga2lib" file to determine how to calculate objective functions
+*  Use *"ExampleModel"* folder structure 
+*  Setup Model directory in *"pynsga2Example.py"* file in the *"ExampleModel"* folder
+*  Setup NSGA-II parameters in *"pynsga2.def"* file in *"NSGA2.IN"* folder
+*  Setup calibration parameters for your model in *"pynsga2_par.def"* file in *"NSGA2.IN"* folder
+*  Edit **"pynsga2userutilities.py"** under *C:\\YourPythonDirectory\\Lib\\site-packages\\pynsga2lib* file to determine how to calculate objective functions
 
 **Run the Model:** 
 
-*  Once setup done, run "pynsga2Example.py" to start the calibration
+*  Once setup done, run *"pynsga2Example.py"* to start the calibration
 
-
-************
-Model Output
-************ 
+****************
+pynsga2 Outputs
+****************
 
 In this section, the output files will be explained to make users familiar with them. 
-The output files are not in the example model but they will be created once "pynsga2Example.py" runs sucessfully.
+The output files are not in the example model but they will be created once *"pynsga2Example.py"* runs sucessfully.
 
 *  Output.out:
 
@@ -53,7 +52,7 @@ The output files are not in the example model but they will be created once "pyn
 *  Plot.out:
 
   * This file contains fitness results from the population of last generation (pareto front).
-  * Each line, displaying objective function values, is a member of the pareto front. The order defined in "pynsga2userutilities.py" file is applied. 
+  * Each line, displaying objective function values, is a member of the pareto front. The order defined in *"pynsga2userutilities.py"* file is applied. 
 
 
 
@@ -66,12 +65,15 @@ The output files are not in the example model but they will be created once "pyn
 ************
 Final Notes
 ************  
+
 **Important:**
-*  "pynsga2userutilities.py" is the most important file to addapt pynsga2 into your model. It will be edited to calculate objective functions for the model.
+
+*  **"pynsga2userutilities.py"** is the most important file to addapt pynsga2 into your model. It will be edited to calculate objective functions for the model.
 *  Read papers bellow to understand the process behing the scripts
 *  If you encounter any problems or have suggestions for the future development, please contact **Mehmet B. Ercan** at mehmetbercan@gmail.com.
 
 **Credit:** 
+
 Please cite one of the bellow articles if you use this code:
 
 Ercan, M. B. and J. L. Goodall(2016), Design and implementation of a general software library for using NSGA-II with SWAT for multi-objective model calibration., *Environmental Modelling & Software*, 84, 112-120. doi:`10.1016/j.envsoft.2016.06.017 <http://www.sciencedirect.com/science/article/pii/S1364815216302547>`_.
