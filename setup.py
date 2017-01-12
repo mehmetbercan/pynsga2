@@ -4,7 +4,7 @@ def readme():
     with open('README.rst') as f:
         return f.read()
     
-setup(name='pynsga2',
+setup(name='pynsga2lib',
       version='1.0',
       description='Libraries for performing nsga2 calibration.',
       long_description=readme(),
@@ -20,7 +20,7 @@ setup(name='pynsga2',
       author='Mehmet B. Ercan',
       author_email='mehmetbercan@gmail.com',
       license='MIT',
-      packages=['pynsga2'],
-      install_requires=['pynsga2','numpy'],
+      packages=['pynsga2lib'],
+      install_requires=['pynsga2lib','numpy'],
       include_package_data=True
       )
