@@ -54,7 +54,7 @@ def CalculateObjectiveFunctions(population,parname, generation,ModelDir):
         objectivefuncs = []
         for k in xrange(nfunc):
             #Calculate Objective functions (ObjFunc) based on model result
-            ObjFunc=0.2 #This should be calculated (bellow functions may be used here)
+            ObjFunc=0.2 #This should be calculated
 
             
             
