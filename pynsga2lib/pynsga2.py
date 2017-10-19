@@ -24,15 +24,14 @@ repeats for every generation.
 
 import copy, sys, numpy, os, random, shutil, pynsga2utilities, pynsga2userutilities
 
-
 class nsga2:
     def __init__(self,ModelDirectory):
         """nsga2 calibration functions"""
         """ModelDirectory folder should have 'nsga.in' subfolder with nsga2 input files"""
         
-        #Read ('nsga2.def') NSGA-II binary options input
-        nsga2def = ModelDirectory+r"/NSGA2.IN/pynsga2.def"
-        nsga2pardef = ModelDirectory+r"/NSGA2.IN/pynsga2_par.def"
+        #Read ('nsga2.txt') NSGA-II binary options input
+        nsga2def = ModelDirectory+r"/NSGA2.IN/pynsga2.txt"
+        nsga2pardef = ModelDirectory+r"/NSGA2.IN/pynsga2_par.txt"
         f = open(nsga2def, "r")
         lines = f.readlines()
         popsize = int(lines[1].split()[1]) #Population size (an even no.)
@@ -46,16 +45,16 @@ class nsga2:
         nfunc = int(lines[9].split()[1]) #Number of Objective Functions
         ReadMFrmOut = int(lines[10].split()[1]) #1= Read last population from output.out (use "1" when you want to re-start with same parameters defined in parameter file)
         f.close()
-        #Read 'nsga2_par.def'
+        #Read 'nsga2_par.txt'
         f = open(nsga2pardef, "r")
         lines = f.readlines(); nchrom=0;
         for i in range(1,len(lines)):
             if lines[i][0]=="\n" or lines[i][0]=="-":break;
             nchrom = i #no. of binary-coded variables (--number of parameters--)
-        if nchrom <= 0: sys.exit("ERROR: 'nsga2_par.def' files does not have prameters (or paramters doesn't start with 'a','r' or 'v')")
+        if nchrom <= 0: sys.exit("ERROR: 'nsga2_par.txt' files does not have prameters (or paramters doesn't start with 'a','r' or 'v')")
         chrom = 0#Chromosome length (Total Sum of the bit value)
         vlen=[];lim_b=[]; parname = []
-        for i in xrange(nchrom):
+        for i in range(0,nchrom):
             vlen.append(nbits) #the no.of bits assigned to the %d variable\n"%(i+1)
             chrom += nbits;
             parname.append(lines[i+1].split()[0])
@@ -123,8 +122,8 @@ class nsga2:
             f.close()
             if self.popsize != len(LastGenPars): sys.exit("ERROR: poulation size is not equal to population size in output.out file")
             #Write values in old_pop_ptr
-            for i in xrange(self.popsize):
-                for j in xrange(self.nchrom):
+            for i in range(0,self.popsize):
+                for j in range(0,self.nchrom):
                     old_pop_ptr["ind"][i]["xbin"][j] = LastGenPars[i][j]
             #Copy old output file
             shutil.copy2(self.Modeldir+"/NSGA2.OUT/output.out", self.Modeldir+"/NSGA2.OUT/output_previous.out")            
@@ -135,18 +134,18 @@ class nsga2:
             InitialLHSpop = pynsga2utilities.CreateDefaultPopulation(self.M,self.chrom,self.nchrom,self.nfunc)
             #Latin Hypercube Samples
             LHSamples = []
-            for j in xrange(len(self.lim_b)):
+            for j in range(0,len(self.lim_b)):
                 LowBound = self.lim_b[j][0]
                 UpBound = self.lim_b[j][1]
                 parVals = []
-                for i in xrange(self.M+1):
+                for i in range(0,self.M+1):
                     point = i * 1. / self.M
                     parValue = (point * (UpBound - LowBound)) + LowBound
                     parVals.append(parValue)
                 LHSamples.append(parVals)
             #Random selection of values from each interval of LHS
-            for i in xrange(self.M):
-                for j in xrange(self.nchrom):
+            for i in range(0,self.M):
+                for j in range(0,self.nchrom):
                     rndinteger = int(round(self.M*random.random(),0))
                     InitialLHSpop["ind"][i]["xbin"][j] = LHSamples[j][rndinteger]         
             #/*Function Calculaiton*/
@@ -154,7 +153,7 @@ class nsga2:
             #Select the first population from InitialLHSpop
             n=0
             for rank in range(1,self.M+1):
-                for i in xrange(self.M):
+                for i in range(0,self.M):
                     if rank >= InitialLHSpop["ind"][i]["rank"] and InitialLHSpop["ind"][i]["flag"] != 99:
                         old_pop_ptr["ind"][n] = copy.deepcopy(InitialLHSpop["ind"][i])
                         n+=1
